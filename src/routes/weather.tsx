@@ -20,9 +20,9 @@ export const Route = createFileRoute("/weather")({
 const ICON: Record<WeatherDay["condition"], typeof Sun> = { Sunny: Sun, Cloudy: Cloud, Rain: CloudRain, Storm: CloudLightning, "Partly cloudy": CloudSun };
 
 function WeatherPage() {
-  const [region, setRegion] = useState(REGIONS[1]);
+  const [region, setRegion] = useState(REGIONS[1]!);
   const week = weatherFor(region);
-  const today = week[0];
+  const today = week[0]!;
   const totalRain = week.reduce((s, d) => s + d.rain, 0);
   const alerts = [
     ...week.filter((d) => d.rain >= 25).map((d) => ({ tone: "danger", t: `${d.day}: heavy rain (${d.rain} mm) — postpone spraying & fertiliser` })),

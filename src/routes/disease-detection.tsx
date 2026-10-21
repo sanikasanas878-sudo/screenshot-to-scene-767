@@ -25,7 +25,7 @@ function DiseasePage() {
   const [file, setFile] = useState<File | null>(null);
   const [url, setUrl] = useState<string | null>(null);
   const [drag, setDrag] = useState(false);
-  const [scenario, setScenario] = useState(DISEASE_CASES[0].id);
+  const [scenario, setScenario] = useState(DISEASE_CASES[0]!.id);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<DiseaseCase | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);

@@ -63,7 +63,7 @@ function CropPage() {
 
   const save = () => {
     if (!results || !lastInput) return;
-    addHistory({ category: "Crop recommendation", title: `Top pick: ${results[0].crop.name} (${results[0].score}%)`, summary: `${lastInput.region} · ${lastInput.season} · ${lastInput.irrigation}`,
+    addHistory({ category: "Crop recommendation", title: `Top pick: ${results[0]!.crop.name} (${results[0]!.score}%)`, summary: `${lastInput.region} · ${lastInput.season} · ${lastInput.irrigation}`,
       details: { N: lastInput.n, P: lastInput.p, K: lastInput.k, pH: lastInput.ph, ...Object.fromEntries(results.map((r, i) => [`#${i + 1}`, `${r.crop.name} — ${r.score}%`])) } });
     toast.success("Saved to Farming History");
   };
@@ -131,10 +131,10 @@ function CropPage() {
                   </ResponsiveContainer>
                 </div>
               </Panel>
-              <Panel title={`Sowing guidance — ${results[0].crop.name}`}>
-                <p className="text-sm">{results[0].crop.sowing}</p>
+              <Panel title={`Sowing guidance — ${results[0]!.crop.name}`}>
+                <p className="text-sm">{results[0]!.crop.sowing}</p>
                 <p className="eyebrow mt-4">Precautions</p>
-                <ul className="mt-1 list-disc space-y-1 pl-5 text-sm">{results[0].crop.precautions.map((p) => <li key={p}>{p}</li>)}</ul>
+                <ul className="mt-1 list-disc space-y-1 pl-5 text-sm">{results[0]!.crop.precautions.map((p) => <li key={p}>{p}</li>)}</ul>
               </Panel>
             </>
           )}

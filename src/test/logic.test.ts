@@ -4,10 +4,10 @@ import { SOIL_PRESETS } from "@/lib/data";
 
 describe("rule-based logic", () => {
   it("recommends rice first for the monsoon paddy preset", () => {
-    expect(recommendCrops(SOIL_PRESETS[0].values)[0].crop.name).toBe("Rice");
+    expect(recommendCrops(SOIL_PRESETS[0]!.values)[0]!.crop.name).toBe("Rice");
   });
   it("returns exactly three recommendations", () => {
-    expect(recommendCrops(SOIL_PRESETS[1].values)).toHaveLength(3);
+    expect(recommendCrops(SOIL_PRESETS[1]!.values)).toHaveLength(3);
   });
   it("converts 1 mm over 1 ha to 10,000 litres", () => {
     const p = planIrrigation({ crop: "Maize", stage: "Mid-season", soil: "Loamy", moisture: 30, temp: 30, rainfall: 0, area: 1, method: "Drip" });
