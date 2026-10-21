@@ -49,7 +49,7 @@ export function Notice({ children, tone = "info" }: { children: ReactNode; tone?
   );
 }
 
-export function Field({ label, id, error, children, hint }: { label: string; id: string; error?: string; hint?: string; children: ReactNode }) {
+export function Field({ label, id, error, children, hint }: { label: string; id: string; error?: string | undefined; hint?: string | undefined; children: ReactNode }) {
   return (
     <div className="space-y-1.5">
       <label htmlFor={id} className="text-xs font-medium">{label}</label>

@@ -24,7 +24,7 @@ function MarketPage() {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("All");
   const [market, setMarket] = useState(0);
-  const [selected, setSelected] = useState(COMMODITIES[0].name);
+  const [selected, setSelected] = useState(COMMODITIES[0]!.name);
 
   const rows = useMemo(() => COMMODITIES.filter((c) => (cat === "All" || c.category === cat) && c.name.toLowerCase().includes(q.toLowerCase())).map((c) => ({ c, ...priceAt(c, market) })), [q, cat, market]);
   const sel = COMMODITIES.find((c) => c.name === selected)!;

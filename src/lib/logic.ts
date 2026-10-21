@@ -58,11 +58,11 @@ export function planIrrigation(i: IrrigationInput) {
   return { dailyMm: Math.round(dailyMm * 10) / 10, interval, litresPerDay: Math.round(litresPerDay), days, weeklyLitres: days.reduce((s, d) => s + d.water, 0) };
 }
 
-export type YieldInput = { crop: string; area: number; soilQuality: number; rainfall: number; temp: number; irrigation: boolean; fertilizer: number; previous?: number };
+export type YieldInput = { crop: string; area: number; soilQuality: number; rainfall: number; temp: number; irrigation: boolean; fertilizer: number; previous?: number | undefined };
 
 // Yield — multiplicative sample factors applied to a crop baseline (t/ha).
 export function estimateYield(i: YieldInput) {
-  const crop = CROPS.find((c) => c.name === i.crop) ?? CROPS[0];
+  const crop = CROPS.find((c) => c.name === i.crop) ?? CROPS[0]!;
   const soilF = 0.7 + (i.soilQuality / 10) * 0.5; // 1–10 → 0.75–1.2
   const midRain = (crop.rainfall[0] + crop.rainfall[1]) / 2;
   const rainF = 0.75 + 0.25 * rangeScore(i.rainfall, crop.rainfall) + (i.irrigation ? 0.1 : 0) - (i.rainfall > midRain * 2 ? 0.1 : 0);
